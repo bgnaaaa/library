@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-weight: 500;
+  src: local("Merriweather-Regular"),
+    url("/fonts/Merriweather-Regular.ttf") format("opentype");
+}
+@font-face {
+  font-family: "Merriweather";
+  font-weight: 400;
+  src: local("Merriweather-Light"),
+    url("/fonts/Merriweather-Light.ttf") format("opentype");
+}
+@font-face {
+  font-family: "Merriweather";
+  font-weight: 700;
+  src: local("Merriweather-Bold"),
+    url(/fonts/Merriweather-Bold.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: "Merriweather";
+  src: local("Merriweather-Regular"),
+    url("/fonts/Merriweather-Regular.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  src: local("GIP-Regular"), url("/fonts/GIP-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  font-weight: 100;
+  src: local("GIP-Thin"), url(/fonts//GIP-Thin.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  font-weight: 200;
+  src: local("GIP-UltraLight"),
+    url(/fonts//GIP-UltraLight.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  font-weight: 300;
+  src: local("GIP-Light"), url(/fonts//GIP-Light.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  font-weight: 500;
+  src: local("GIP-Medium"), url(/fonts//GIP-Medium.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  font-weight: 600;
+  src: local("GIP-SemiBold"), url(/fonts//GIP-SemiBold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  font-weight: 700;
+  src: local("GIP-Bold"), url(/fonts//GIP-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  font-weight: 800;
+  src: local("GIP-ExtraBold"), url(/fonts//GIP-ExtraBold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "GIP";
+  font-weight: 900;
+  src: local("GIP-Black"), url(/fonts//GIP-Black.otf) format("opentype");
+}
