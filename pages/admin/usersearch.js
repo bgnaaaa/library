@@ -72,7 +72,7 @@ export default function UserSearch() {
           <div className="flex gap-3">
             <Input
               className=" w-[300px]"
-              placeholder="请输入管理员ID"
+              placeholder="索搜"
               value={name}
               onChange={filter}
               radius="10px"
@@ -96,25 +96,32 @@ export default function UserSearch() {
               </div>
             </button>
           </div>
-          <div className="flex gap-36 text-xl font-bold mt-[30px]">
-            <h1>用户ID</h1>
+          <div className="grid gap-7 grid-cols-5 text-xl font-bold mt-[30px]">
+            <h1 className="justify-start">用户ID</h1>
             <h2>用户名</h2>
             <h3>电话号码</h3>
             <h4>身份证号</h4>
-            <h5 className="absolute right-0 mr-[50px]">编辑/删除</h5>
+            <h5 className="flex justify-end">编辑/删除</h5>
           </div>
           <div className="bg-[#1E1E1E] h-[1px] roundend-full w-full my-[18px]"></div>
 
           <div className="">
             {foundUsers && foundUsers.length > 0 ? (
               foundUsers.map((user) => (
-                <div className="flex flex-col">
-                  <li key={user.id} className="flex text-xl ">
-                    <span className="mr-32 ">{user.id}</span>
-                    <span className="mr-40 ">{user.name}</span>
-                    <span className="mr-24">{user.phonenumber} </span>
+                <div className="">
+                  <li
+                    key={user.id}
+                    className="grid gap-7 grid-cols-5 grid-rows-1 text-xl  "
+                  >
+                    <span className="">
+                      <button className="text-xl text-[#0D409B]">
+                        {user.id}{" "}
+                      </button>
+                    </span>
+                    <span className="">{user.name}</span>
+                    <span className="">{user.phonenumber} </span>
                     <span className="">{user.identitynumber} </span>
-                    <div className="flex justify-center items-right right-0 gap-2 absolute mr-[50px]">
+                    <div className="flex justify-end items-center gap-2 ">
                       <button>
                         <img src="/assets/images/edit-icon.svg" />
                       </button>
