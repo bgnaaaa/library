@@ -35,8 +35,13 @@ export default function UserLayout({
     },
     {
       href: "/user/seatreservation",
-      title: "图书预约情况",
+      title: "座位预约",
       icon: "/assets/images/time-icon.svg",
+    },
+    {
+      href: "/user/bookreservation",
+      title: "图书预约情况",
+      icon: "/assets/images/ring-icon.svg",
     },
   ];
 

@@ -7,26 +7,26 @@ import { Input } from "@mantine/core";
 import { Modal } from "@mantine/core";
 export default function UserSearch() {
   const [opened, setOpened] = useState(false);
-  const [value, setValue] = useState("react");
+  const [value, setValue] = useState("id");
 
   const USERS = [
     {
-      id: 1956226,
+      id: "1956226",
       name: "阿塔",
-      phonenumber: +97699198282,
-      identitynumber: 1919190,
+      phonenumber: "+97699198282",
+      identitynumber: "1919190",
     },
     {
-      id: 1956225,
+      id: "1956225",
       name: "特古斯",
-      phonenumber: +97699119911,
-      identitynumber: 1919021,
+      phonenumber: "+97699119911",
+      identitynumber: "1919021",
     },
     {
-      id: 1956224,
+      id: "1956224",
       name: "成龙",
-      phonenumber: +97699990908,
-      identitynumber: 19190876,
+      phonenumber: "+97699990908",
+      identitynumber: "19190876",
     },
   ];
 
@@ -38,9 +38,10 @@ export default function UserSearch() {
 
   const filter = (e) => {
     const keyword = e.target.value;
+    let results;
 
     if (keyword !== "") {
-      const results = USERS.filter((user) => {
+      results = USERS.filter((user) => {
         return user.name.toLowerCase().startsWith(keyword.toLowerCase());
         // Use the toLowerCase() method to make it case-insensitive
       });
@@ -48,6 +49,33 @@ export default function UserSearch() {
     } else {
       setFoundUsers(USERS);
       // If the text field is empty, show all users
+    }
+    if (value === "id") {
+      results = USERS.filter((user) => {
+        return user.id.startsWith(keyword);
+      });
+      setFoundUsers(results);
+    }
+
+    if (value === "name") {
+      results = USERS.filter((user) => {
+        return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+      });
+      setFoundUsers(results);
+    }
+
+    if (value === "phonenumber") {
+      results = USERS.filter((user) => {
+        return user.phonenumber.startsWith(keyword);
+      });
+      setFoundUsers(results);
+    }
+
+    if (value === "identitynumber") {
+      results = USERS.filter((user) => {
+        return user.identitynumber.startsWith(keyword);
+      });
+      setFoundUsers(results);
     }
 
     setName(keyword);
@@ -63,8 +91,8 @@ export default function UserSearch() {
           color="dark"
           className="text-lg font-normal mt-[20px]"
         >
-          <Radio value="userID" label="账户号" />
-          <Radio value="username" label="用户名" />
+          <Radio value="id" label="账户号" />
+          <Radio value="name" label="用户名" />
           <Radio value="phonenumber" label="电话号码" />
           <Radio value="identitynumber" label="身份证号" />
         </RadioGroup>
@@ -107,12 +135,9 @@ export default function UserSearch() {
 
           <div className="">
             {foundUsers && foundUsers.length > 0 ? (
-              foundUsers.map((user) => (
-                <div className="">
-                  <li
-                    key={user.id}
-                    className="grid gap-7 grid-cols-5 grid-rows-1 text-xl  "
-                  >
+              foundUsers.map((user, index) => (
+                <div key={index}>
+                  <li className="grid gap-7 grid-cols-5 grid-rows-1 text-xl  ">
                     <span className="">
                       <button className="text-xl text-[#0D409B]">
                         {user.id}{" "}

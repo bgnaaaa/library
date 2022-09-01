@@ -2,37 +2,37 @@ import Layout from "../../src/components/layout/Layout";
 import { Button, Radio } from "@mantine/core";
 import { RadioGroup } from "@mantine/core";
 import { Group } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@mantine/core";
 import { Modal } from "@mantine/core";
 export default function BookSearch() {
   const [opened, setOpened] = useState(false);
-  const [value, setValue] = useState("react");
+  const [value, setValue] = useState("bookid");
 
   const BOOKS = [
     {
-      bookid: 901191109,
-      isbn: "0143130722",
+      bookid: "101",
+      isbn: "0101010101",
       bookname: "IKIGAI",
       author: "Francesc Miralles",
       publishinghouse: "Random House UK",
       bookdetail: "Ikigai 揭示了他们长寿和...",
     },
     {
-      bookid: 901191109,
-      isbn: "0143130722",
+      bookid: "102",
+      isbn: "0202020202",
       bookname: "Fifty Shades",
-      author: "Francesc Miralles",
-      publishinghouse: "Random House UK",
-      bookdetail: "Ikigai 揭示了他们长寿和...",
+      author: "George Micheal",
+      publishinghouse: "Crismon Moon",
+      bookdetail: "Fifty Shades 揭示了他们长寿和...",
     },
     {
-      bookid: 901191109,
-      isbn: "0143130722",
+      bookid: "103",
+      isbn: "0303030303",
       bookname: "Twilight",
-      author: "Francesc Miralles",
-      publishinghouse: "Random House UK",
-      bookdetail: "Ikigai 揭示了他们长寿和...",
+      author: "Tony Parker",
+      publishinghouse: "San Antiono Spurs",
+      bookdetail: "Twilight 揭示了他们长寿和...",
     },
   ];
 
@@ -44,20 +44,58 @@ export default function BookSearch() {
 
   const filter = (e) => {
     const keyword = e.target.value;
+    let results;
 
     if (keyword !== "") {
-      const results = BOOKS.filter((book) => {
+      results = BOOKS.filter((book) => {
         return book.bookname.toLowerCase().startsWith(keyword.toLowerCase());
         // Use the toLowerCase() method to make it case-insensitive
       });
       setFoundBooks(results);
     } else {
       setFoundBooks(BOOKS);
-      // If the text field is empty, show all users
+    }
+    // If the text field is empty, show all users
+    if (value === "bookid") {
+      results = BOOKS.filter((book) => {
+        return book.bookid.startsWith(keyword);
+      });
+      setFoundBooks(results);
+    }
+
+    if (value === "isbn") {
+      results = BOOKS.filter((book) => {
+        return book.isbn.startsWith(keyword);
+      });
+      setFoundBooks(results);
+    }
+
+    if (value === "bookname") {
+      results = BOOKS.filter((book) => {
+        return book.bookname.toLowerCase().startsWith(keyword.toLowerCase());
+      });
+      setFoundBooks(results);
+    }
+
+    if (value === "author") {
+      results = BOOKS.filter((book) => {
+        return book.author.toLowerCase().startsWith(keyword.toLowerCase());
+      });
+      setFoundBooks(results);
+    }
+
+    if (value === "publishinghouse") {
+      results = BOOKS.filter((book) => {
+        return book.publishinghouse
+          .toLowerCase()
+          .startsWith(keyword.toLowerCase());
+      });
+      setFoundBooks(results);
     }
 
     setBookname(keyword);
   };
+
   return (
     <Layout>
       <div className="mx-[50px] mt-[50px] overflow-scroll">
@@ -115,12 +153,9 @@ export default function BookSearch() {
 
           <div className="">
             {foundBooks && foundBooks.length > 0 ? (
-              foundBooks.map((book) => (
-                <div className="">
-                  <li
-                    key={book.bookid}
-                    className="grid gap-5 grid-cols-7 grid-rows-1 text-xl "
-                  >
+              foundBooks.map((book, index) => (
+                <div key={index}>
+                  <li className="grid gap-5 grid-cols-7 grid-rows-1 text-xl ">
                     <span>
                       <button className=" text-[#0D409B]">{book.bookid}</button>
                     </span>
