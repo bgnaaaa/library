@@ -8,6 +8,7 @@ import { Modal } from "@mantine/core";
 export default function BookSearch() {
   const [opened, setOpened] = useState(false);
   const [value, setValue] = useState("bookid");
+  const [successOpened, setSuccessOpened] = useState(false);
 
   const BOOKS = [
     {
@@ -147,7 +148,7 @@ export default function BookSearch() {
             <h4>作者</h4>
             <h5>出版社</h5>
             <h6>详情</h6>
-            <h7 className="flex justify-end">编辑/删除</h7>
+            <h7 className="flex justify-end">详细</h7>
           </div>
           <div className="bg-[#1E1E1E] h-[1px] roundend-full w-full my-[18px]"></div>
 
@@ -167,11 +168,8 @@ export default function BookSearch() {
                     <span className="">{book.publishinghouse}</span>
                     <span className="">{book.bookdetail}</span>
                     <div className="flex justify-end gap-2 ">
-                      <button>
-                        <img src="/assets/images/edit-icon.svg" />
-                      </button>
                       <button onClick={() => setOpened(true)}>
-                        <img src="/assets/images/delete-icon.svg" />
+                        <img src="/assets/images/detail-icon.svg" />
                       </button>
                       <Modal
                         overlayBlur={1}
@@ -182,13 +180,54 @@ export default function BookSearch() {
                         withCloseButton={false}
                       >
                         <div className="flex flex-col gap-4">
-                          <h1 className="text-center text-2xl font-bold flex">
-                            您想删除{" "}
-                            <div className="text-[#0D409B]">
-                              {book.bookid} {book.bookname}
-                            </div>{" "}
-                            吗？
-                          </h1>
+                          <div className="flex gap-2">
+                            <h1 className="font-bold text-lg">图书编号: </h1>
+                            <h2 className="font-bold text-lg text-[#0D409B]">
+                              {" "}
+                              {book.bookid}
+                            </h2>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <h1 className="font-bold text-lg">ISBN: </h1>
+                            <h2 className="font-bold text-lg text-[#0D409B]">
+                              {" "}
+                              {book.isbn}
+                            </h2>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <h1 className="font-bold text-lg">书名: </h1>
+                            <h2 className="font-bold text-lg text-[#0D409B]">
+                              {" "}
+                              {book.bookname}
+                            </h2>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <h1 className="font-bold text-lg">作者: </h1>
+                            <h2 className="font-bold text-lg text-[#0D409B]">
+                              {" "}
+                              {book.author}
+                            </h2>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <h1 className="font-bold text-lg">出版社: </h1>
+                            <h2 className="font-bold text-lg text-[#0D409B]">
+                              {" "}
+                              {book.publishinghouse}
+                            </h2>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <h1 className="font-bold text-lg">详情: </h1>
+                            <h2 className="font-bold text-lg text-[#0D409B]">
+                              {" "}
+                              {book.bookdetail}
+                            </h2>
+                          </div>
+
                           <div className="flex gap-4">
                             <button
                               onClick={() => setOpened(false)}
@@ -197,9 +236,34 @@ export default function BookSearch() {
                               取消
                             </button>
 
-                            <button className="text-white w-[200px] h-[50px] bg-[#0D409B] hover:bg-[#859FCC] text-xl font-bold rounded-[10px]">
-                              确认
+                            <button
+                              onClick={() => setSuccessOpened(true)}
+                              className="text-white w-[200px] h-[50px] bg-[#0D409B] hover:bg-[#859FCC] text-xl font-bold rounded-[10px]"
+                            >
+                              预约
                             </button>
+                            <Modal
+                              opened={successOpened}
+                              onClose={() => setSuccessOpened(false)}
+                              centered
+                              withCloseButton={false}
+                            >
+                              <div className="flex flex-col gap-4 items-center">
+                                <h1 className="text-center text-2xl font-bold">
+                                  图书预约成功！
+                                </h1>
+                                <div className="flex items-center">
+                                  <button
+                                    onClick={() => (
+                                      setSuccessOpened(false), setOpened(false)
+                                    )}
+                                    className="text-white w-[200px] h-[50px] bg-[#0D409B] hover:bg-[#859FCC] text-xl font-bold rounded-[10px]"
+                                  >
+                                    返回
+                                  </button>
+                                </div>
+                              </div>
+                            </Modal>
                           </div>
                         </div>
                       </Modal>

@@ -116,7 +116,7 @@ export default function Signin({ user }) {
             <div className="">
               <Link href={"/user"}>
                 <button
-                  /*  onclick={signin} */
+                  onclick={signin}
                   className="text-[24px] font-GIP font-normal text-white text-center w-[344px] bg-[#0D409B] rounded-[10px] py-[5px] mt-[20px] hover:bg-[#859FCC]"
                 >
                   登录
