@@ -49,9 +49,7 @@ export default function UserLayout({
     <div className="min-h-screen flex flex-col">
       <div className="flex flex-col md:flex-row flex-1">
         <aside className="bg-[#D4D4D4] w-full md:w-1/5">
-          <h1 className="text-2xl text-center font-bold mt-12">
-            您好 {userid} {username}！
-          </h1>
+          <h1 className="text-2xl text-center font-bold mt-12">您好 用户！</h1>
           <nav className="mt-8 text-lg font-normal">
             <ul>
               {menuItems.map(({ href, title, icon }) => (
